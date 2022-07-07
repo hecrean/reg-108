@@ -13,6 +13,15 @@
 	import { datasetFn } from '$utils/chart';
 	import BarChart from './BarChart.svelte';
 	import NavigationMenu from './NavigationMenu.svelte';
+	import Bar from '$components/layercake/Bar.svelte';
+
+	import { LayerCake, Svg, Html, Canvas } from 'layercake';
+
+	const data = [
+		{ x: 0, y: 1 },
+		{ x: 1, y: 2 },
+		{ x: 2, y: 3 }
+	];
 
 	type $$Props = {
 		caseStudy: CaseStudy;
@@ -82,7 +91,8 @@
 				'CRT',
 				'DRSS',
 				'EDTRS',
-				'Snellen Equivalent'
+				'Snellen Equivalent',
+				'NPDR'
 			]}
 		>
 			<svelte:fragment slot="slot-0">
@@ -128,6 +138,12 @@
 					<BarChart dataset={datasetFn(caseStudy, stages, 'snellen_equivalent')} />
 				</div>
 			</svelte:fragment>
+			<svelte:fragment slot="slot-6">
+				<Table dataset={datasetFn(caseStudy, stages, 'NPDR_grading')} />
+				<div class="chart-grid" data-layout={dashboardBreakpoint}>
+					<BarChart dataset={datasetFn(caseStudy, stages, 'NPDR_grading')} />
+				</div>
+			</svelte:fragment>
 		</NavigationMenu>
 	</div>
 </article>
@@ -136,6 +152,11 @@
 	@use 'sass:math';
 	$light-blue: rgba(173, 223, 237, 0.4);
 	@import '../styles/color';
+
+	.chart-container {
+		width: 100%;
+		height: 500px;
+	}
 
 	article {
 		position: relative;

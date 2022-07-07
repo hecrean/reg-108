@@ -49,6 +49,7 @@
 	"dependencies": {
 		"@types/d3-scale": "^4.0.2",
 		"d3-scale": "^4.0.2",
+		"layercake": "^6.1.1",
 		"lit": "^2.2.7",
 		"rxjs": "^7.5.5",
 		"shifty": "^2.18.0",

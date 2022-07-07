@@ -1,20 +1,26 @@
 <script lang="ts">
-	import FlexboxRows from '$components/flexbox-table/Rows.svelte';
+	import type { CaseStudy } from '$data/state';
 
-	export let rows: Array<[heading: string, datum: string]>;
-	export let avatarUrl: string;
-	export let label: string;
+	export let caseStudy: CaseStudy;
+
+	$: rows = Object.entries(caseStudy.baseline_characteristics);
 </script>
 
-<div class="stack">
+<div class="stack" style:--accent-color={caseStudy.colorId}>
 	<div class="avatar-block">
 		<div class="avatar-wrapper">
-			<img class="avatar-img" src={avatarUrl} />
+			<img class="avatar-img" src={caseStudy.profile_picture} />
 		</div>
 	</div>
-	<div class="label">{label}</div>
+	<div class="label">{`Case ${caseStudy.id}`}</div>
 	<div class="content-block">
-		<FlexboxRows {rows} />
+		{#each rows as [key, val]}
+			<div class="table-row">
+				<div class="row-heading">{key}</div>
+				<div class="spacer" />
+				<div class="row-data">{val}</div>
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -48,14 +54,20 @@
 		flex: 1 1 auto;
 		flex-direction: column;
 		width: 100%;
-		background-color: $light-grey;
-		border-radius: 20px;
-		@include drop-shadow($eylea-blue);
+		background-color: hsl(0, 0%, 97%);
+		border-radius: 10px;
+		// @include drop-shadow(var(--accent-color));
+		&:hover {
+			.avatar-block {
+				filter: brightness(85%);
+				transition: all 0.3s ease;
+			}
+		}
 	}
 
 	.avatar-block {
-		border-top-left-radius: 20px;
-		border-top-right-radius: 20px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 
 		position: relative;
 		display: flex;
@@ -63,7 +75,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		background: linear-gradient($eylea-blue, lighten($eylea-blue, 25%));
+		background: linear-gradient(var(--accent-color) 40%, hsl(0, 8%, 84%));
 		padding: 10px 10px;
 
 		.avatar-wrapper {
@@ -76,12 +88,12 @@
 			aspect-ratio: 1;
 			max-width: 8rem;
 			border-radius: 100%;
-			background-color: $eylea-blue;
 			border: none;
+			margin-bottom: 8px;
 
 			.avatar-img {
-				-webkit-filter: drop-shadow(5px 5px 5px #222);
-				filter: drop-shadow(5px 5px 5px #222);
+				// -webkit-filter: drop-shadow(5px 5px 5px #222);
+				// filter: drop-shadow(5px 5px 5px #222);
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
@@ -92,18 +104,53 @@
 
 	.label {
 		text-transform: uppercase;
-		z-index: 10;
+		z-index: 1;
 		margin: -10px auto;
 		width: 80px;
 		text-align: center;
 		border-radius: 10px;
-		background-color: $grey-800;
+		background-color: hsl(0, 0%, 100%);
 		color: $eylea-blue;
+		font-weight: bold;
 		/* offset-x | offset-y | blur-radius | spread-radius | color */
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 	}
 
 	.content-block {
 		padding: 1rem 2rem;
+	}
+
+	.table-row {
+		margin: 5px 0;
+		@include background(hsl(0, 0%, 100%));
+		border-radius: 10px;
+		border: none;
+		min-height: 2rem;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-grow: 1;
+		align-items: center;
+		align-items: center;
+		color: grey;
+
+		.row-heading {
+			padding: 0.5rem 1rem;
+			text-transform: capitalize;
+			font-size: small;
+			font-weight: bold;
+		}
+
+		.row-data {
+			padding: 0.5rem 1rem;
+			padding: 0 20px;
+			text-transform: capitalize;
+			text-align: right;
+			font-size: smaller;
+		}
+
+		.spacer {
+			flex-grow: 1;
+		}
 	}
 </style>

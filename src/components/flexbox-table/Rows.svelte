@@ -10,14 +10,12 @@
 <div class="container">
 	{#each rows as [head, val, open]}
 		{#if typeof open === 'boolean'}
-			<Hoverable let:hovering let:clickedWithoutUnclick>
+			<Hoverable let:hovering>
 				<details open>
 					<summary class="accordion-row">
 						<div class="row-heading">{head}</div>
 						<div class="spacer" />
-						<IconButton data-open={hovering || clickedWithoutUnclick} className="chevron"
-							><ChevronDownIcon /></IconButton
-						>
+						<IconButton data-open={hovering} className="chevron"><ChevronDownIcon /></IconButton>
 					</summary>
 					<div class="accordion-content">{val}</div>
 				</details>

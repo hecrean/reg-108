@@ -1,4 +1,5 @@
 import type { CaseStudy, StageADT, TreatmentEffectMetrics } from '$data/state';
+import { Grading } from '$data/state';
 import type { Color } from '$utils/color';
 
 export type NoData = { tag: 'no-data'; msg: string };
@@ -35,7 +36,7 @@ const mapMetricKeyToLabel = (metricKey: keyof TreatmentEffectMetrics): string =>
 			return 'DRS';
 		case 'EDTRS':
 			return 'EDTRS';
-		case 'grading':
+		case 'NPDR_grading':
 			return 'grading';
 		case 'snellen_equivalent':
 			return 'Snellen Equivalent';
@@ -50,7 +51,7 @@ const mapMetricKeyToUnits = (metricKey: keyof TreatmentEffectMetrics): string =>
 			return '';
 		case 'EDTRS':
 			return '';
-		case 'grading':
+		case 'NPDR_grading':
 			return '';
 		case 'snellen_equivalent':
 			return '';
@@ -61,10 +62,10 @@ const timeset = (
 	caseStudy: CaseStudy,
 	stages: Array<StageADT>,
 	metricKey: keyof TreatmentEffectMetrics
-) =>
+): Array<{ x: number; y: number }> =>
 	stages.map((stage) => ({
 		x: mapStageKeyToNumber(stage),
-		y: Number(metricsLens(caseStudy, stage)[metricKey])
+		y: metricsLens(caseStudy, stage)[metricKey]
 	}));
 
 export const datasetFn = (

@@ -39,6 +39,21 @@
 		{#if focusedHeadingIdx === 5}
 			<slot name="slot-5" />
 		{/if}
+		{#if focusedHeadingIdx === 6}
+			<slot name="slot-6" />
+		{/if}
+		{#if focusedHeadingIdx === 7}
+			<slot name="slot-7" />
+		{/if}
+		{#if focusedHeadingIdx === 8}
+			<slot name="slot-8" />
+		{/if}
+		{#if focusedHeadingIdx === 9}
+			<slot name="slot-9" />
+		{/if}
+		{#if focusedHeadingIdx === 10}
+			<slot name="slot-10" />
+		{/if}
 	</div>
 </div>
 
@@ -72,6 +87,7 @@
 	}
 
 	.overflow-blur-effect {
+		pointer-events: none;
 		position: absolute;
 		top: 0;
 		right: 0;

@@ -6,8 +6,17 @@ type CaseStudyId = string;
 type StageADT = 'baseline' | 'week24' | 'week52';
 type ViewADT = 'fundus' | 'oct' | 'fa';
 type Hotspot = { label: string; position: [number, number] };
+
+export enum Grading {
+	Baseline,
+	Mild,
+	Moderate,
+	Severe,
+	VerySevere
+}
+
 export type TreatmentEffectMetrics = {
-	grading: string;
+	NPDR_grading: Grading;
 	DRSS: number;
 	CRT: number;
 	EDTRS: number;
@@ -45,7 +54,7 @@ type Transition = {
 		to: { [key in ViewADT]: Array<TransitionFnId> };
 	};
 };
-type CaseStudy = {
+export type CaseStudy = {
 	id: CaseStudyId;
 	colorId: Color;
 	profile_picture: string;
@@ -60,7 +69,7 @@ const caseStudies: Array<CaseStudy> = [
 		id: '1',
 		colorId: Colors.eyleablue,
 		profile_picture:
-			'https://www.kindpng.com/picc/m/285-2855863_a-festival-celebrating-tractors-round-profile-picture-placeholder.png',
+			'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80',
 		baseline_characteristics: {
 			gender: 'male',
 			study_eye: 'Right (OD)',
@@ -104,7 +113,7 @@ const caseStudies: Array<CaseStudy> = [
 		stages: {
 			baseline: {
 				metrics: {
-					grading: 'Severe NPDR',
+					NPDR_grading: Grading.Severe,
 					DRSS: 53,
 					CRT: 265,
 					EDTRS: 80,
@@ -142,7 +151,7 @@ const caseStudies: Array<CaseStudy> = [
 			},
 			week24: {
 				metrics: {
-					grading: 'Mild NPDR',
+					NPDR_grading: Grading.Mild,
 					DRSS: 35,
 					CRT: 223,
 					EDTRS: 85,
@@ -183,7 +192,7 @@ const caseStudies: Array<CaseStudy> = [
 			},
 			week52: {
 				metrics: {
-					grading: 'Mild NPDR',
+					NPDR_grading: Grading.Mild,
 					DRSS: 35,
 					CRT: 202,
 					EDTRS: 83,

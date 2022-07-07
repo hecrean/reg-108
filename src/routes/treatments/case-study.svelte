@@ -25,7 +25,7 @@
 		<OverlayLayout slot="canvas-overlay">
 			<Timeline
 				slot="foreground-top"
-				radius={1}
+				radius={0.5}
 				timelineItems={[{ stage: 'baseline' }, { stage: 'week24' }, { stage: 'week52' }]}
 				bind:stage
 			/>
