@@ -184,6 +184,8 @@ const createThree = (
 	return {
 		state: () => state,
 		pan: ({ camera, object3dHandles: { plane } }: ThreeState, dx: number, dy: number) => {
+			const dragCoefficient = 0.1;
+
 			const fovy = (camera.fov * Math.PI) / 180;
 			const X = 2 * camera.aspect * camera.position.z * Math.tan(fovy / 2);
 			const Y = 2 * camera.position.z * Math.tan(fovy / 2);
