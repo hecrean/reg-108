@@ -122,29 +122,38 @@ const caseStudies: Array<CaseStudy> = [
 				views: {
 					fundus: [
 						{
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							label:
 								'Given the severity of the NPDR, it is likely that this patient has had type 2 diabetes mellitus much longer than 6 months. There are numerous intraretinal hemorrhages and microaneurysms, particularly in the temporal macula',
 							aspect_ratio: 1920 / 1080,
-							url: 'Fundus/REG108_Fundus_Healthy_Ba.jpg'
+							url: '/Fundus/REG108_Fundus_Healthy_Ba.jpg'
 						}
 					],
 					fa: [
 						{
 							label:
 								'Given the severity of the NPDR, it is likely that this patient has had type 2 diabetes mellitus much longer than 6 months. There are numerous intraretinal hemorrhages and microaneurysms, particularly in the temporal macula',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							aspect_ratio: 1920 / 1080,
-							url: 'Eye/REG108_Eye_Aa.jpg'
+							url: '/Eye/REG108_Eye_Aa.jpg'
 						}
 					],
 					oct: [
 						{
 							label:
 								'The OCT image gives the suggestion of mild intraretinal cysts, although the central subfield thickness (CST) is still normal relative to age-matched controls',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							aspect_ratio: 1920 / 1080,
-							url: 'Eye/REG108_Eye_Aa.jpg'
+							url: '/Eye/REG108_Eye_Aa.jpg'
 						}
 					]
 				}
@@ -160,12 +169,15 @@ const caseStudies: Array<CaseStudy> = [
 				views: {
 					fundus: [
 						{
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 
 							label:
 								'3 step improvement. Significant reduction in the number of microaneurysms and their associated leakage.',
 							aspect_ratio: 1920 / 1080,
-							url: 'Fundus/REG108_Fundus_Healthy_with_Aneurisms_Ba_0000.jpg'
+							url: '/Fundus/REG108_Fundus_Healthy_with_Aneurisms_Ba_0000.jpg'
 						}
 					],
 
@@ -173,19 +185,25 @@ const caseStudies: Array<CaseStudy> = [
 						{
 							label:
 								'3 step improvement. Significant reduction in the number of microaneurysms and their associated leakage.',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 
 							aspect_ratio: 1280 / 720,
-							url: 'Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'
+							url: '/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'
 						}
 					],
 					oct: [
 						{
 							label:
 								'3 step improvement. Improvement in visual acuity and reduction in CST, suggesting the presence of subclinical DME at initial evaluation.',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							aspect_ratio: 1280 / 720,
-							url: 'Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ab.jpg'
+							url: '/Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ab.jpg'
 						}
 					]
 				}
@@ -201,11 +219,14 @@ const caseStudies: Array<CaseStudy> = [
 				views: {
 					fundus: [
 						{
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							label:
 								'3 step improvement. The reduction of microaneurysms seen at Week 24 persists. Of note, the patient has developed hard exudate in the superior macula without associated macular edema. That finding, combined with further reduction in CST, supports the idea of treatment of subclinical DME in conjunction with NPDR.',
 							aspect_ratio: 1920 / 1080,
-							url: 'Fundus/REG108_Fundus_Healthy_with_Fluid_Bulge_Aa_0000.jpg'
+							url: '/Fundus/REG108_Fundus_Healthy_with_Fluid_Bulge_Aa_0000.jpg'
 						}
 					],
 
@@ -213,18 +234,24 @@ const caseStudies: Array<CaseStudy> = [
 						{
 							label:
 								'3 step improvement. The reduction of microaneurysms seen at Week 24 persists. Of note, the patient has developed hard exudate in the superior macula without associated macular edema. That finding, combined with further reduction in CST, supports the idea of treatment of subclinical DME in conjunction with NPDR.',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							aspect_ratio: 1280 / 720,
-							url: 'Aflibercept+VEGF/REG108_Aflibercept+VEGF_Ba_0000.jpg'
+							url: '/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Ba_0000.jpg'
 						}
 					],
 					oct: [
 						{
 							label:
 								'3 step improvement. The reduction of microaneurysms seen at Week 24 persists. Of note, the patient has developed hard exudate in the superior macula without associated macular edema. That finding, combined with further reduction in CST, supports the idea of treatment of subclinical DME in conjunction with NPDR.',
-							hotspots: [],
+							hotspots: [
+								{ label: 'label', position: [0.2, 0.2] },
+								{ label: 'label', position: [-0.2, 0.1] }
+							],
 							aspect_ratio: 1280 / 720,
-							url: 'Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ac.jpg'
+							url: '/Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ac.jpg'
 						}
 					]
 				}

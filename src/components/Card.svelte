@@ -4,6 +4,8 @@
 	export let caseStudy: CaseStudy;
 
 	$: rows = Object.entries(caseStudy.baseline_characteristics);
+
+	const cleanText = (str: string) => str.replace(/[_]/g, ' ');
 </script>
 
 <div class="stack" style:--accent-color={caseStudy.colorId}>
@@ -16,7 +18,7 @@
 	<div class="content-block">
 		{#each rows as [key, val]}
 			<div class="table-row">
-				<div class="row-heading">{key}</div>
+				<div class="row-heading">{cleanText(key)}</div>
 				<div class="spacer" />
 				<div class="row-data">{val}</div>
 			</div>

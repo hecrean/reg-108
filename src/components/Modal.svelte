@@ -15,6 +15,7 @@
 
 <style lang="scss">
 	.modal {
+		pointer-events: all;
 		position: fixed;
 		left: 0;
 		top: 0;

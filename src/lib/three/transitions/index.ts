@@ -28,11 +28,9 @@ const noop: () => void = () => {};
 
 const planeDisplaceOutTask = async (
 	{ textureLoader, object3dHandles: { plane } }: ThreeState,
-	image1Url: string,
-	image2Url: string
+	imgUrl: string
 ) => {
-	const texture1 = textureLoader.load(image1Url);
-	const texture2 = textureLoader.load(image2Url);
+	const tex = textureLoader.load(imgUrl);
 	const displacementTexture = textureLoader.load(DisplacementMap.COSMOLOGICAL);
 
 	await animate({
@@ -45,17 +43,13 @@ const planeDisplaceOutTask = async (
 			plane.material.needsUpdate = true;
 		}
 	}).then(() => {
-		plane.material.uDiffuseTexture1 = texture1;
-		plane.material.uDiffuseTexture2 = texture2;
+		plane.material.uDiffuseTexture1 = plane.currentTexture;
+		plane.material.uDiffuseTexture2 = tex;
 		plane.material.uDispMap = displacementTexture;
 	}, noop);
 };
 
-const planeDisplaceInTask = async (
-	{ object3dHandles: { plane } }: ThreeState,
-	image1Url: string,
-	image2Url: string
-) => {
+const planeDisplaceInTask = async ({ object3dHandles: { plane } }: ThreeState) => {
 	await animate({
 		from: { disp: 0.3 },
 		to: { disp: 0 },

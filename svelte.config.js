@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
-// import adapter from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 
 import preprocess from 'svelte-preprocess';
 
@@ -20,7 +20,8 @@ const config = {
 			$icons: 'src/icons',
 			$styles: 'src/styles',
 			$stores: 'src/stores',
-			$actions: 'src/actions'
+			$actions: 'src/actions',
+			$assets: 'src/assets'
 		}
 	}
 };

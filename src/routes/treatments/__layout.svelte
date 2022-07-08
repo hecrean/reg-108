@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ExpandableFooter from '$components/ExpandableFooter.svelte';
 	import FadeInBlock from '$components/FadeInBlock.svelte';
 	import Hoverable from '$components/Hoverable.svelte';
 	import IconButton from '$components/IconButton.svelte';
@@ -6,8 +7,8 @@
 	import Modal from '$components/Modal.svelte';
 	import Navbar from '$components/Navbar.svelte';
 	import Sidebar from '$components/Sidebar.svelte';
-	import ArrowUp from '$icons/ArrowUpIcon.svelte';
 	import ChevronRightIcon from '$icons/ChevronRightIcon.svelte';
+	import animationVideo from '$assets/animation-video/REG108_Eylea_Preview_576p_220630.mp4';
 
 	let sidebarOpen: boolean = false;
 	let bottombarOpen: boolean = false;
@@ -17,9 +18,11 @@
 
 <div class:fullpage-container={true} class="flex-col">
 	<Modal bind:open={modalOpen}>
-		<video
-			src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4"
-		/>
+		<video controls width="100%">
+			<source src={animationVideo} type="video/mp4" />
+
+			Sorry, your browser doesn't support embedded videos.
+		</video>
 	</Modal>
 	<Navbar bind:sidebar={sidebarOpen} />
 	<Sidebar bind:open={sidebarOpen}>
@@ -64,23 +67,15 @@
 		</div>
 	</Sidebar>
 	<main><slot /></main>
-	<Hoverable let:hovering>
-		<footer data-expanded={hovering || footerOpen}>
-			<span
-				on:click|preventDefault={() => {
-					footerOpen = !footerOpen;
-				}}
-			>
-				<IconButton color={'blue'}>
-					<ArrowUp />
-				</IconButton>
-			</span>
-
-			{#if footerOpen}
-				<section>HELLO</section>
-			{/if}
-		</footer>
-	</Hoverable>
+	<ExpandableFooter>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+			laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+			non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</p>
+	</ExpandableFooter>
 </div>
 
 <style lang="scss">
@@ -109,6 +104,10 @@
 	$grey-800: rgb(136, 138, 140);
 
 	$violet: rgb(147, 167, 203);
+
+	p {
+		padding: 2rem 2.5rem 0rem 2.5rem;
+	}
 
 	.fullpage-container {
 		height: 100%;
@@ -175,22 +174,22 @@
 		flex: 1;
 	}
 
-	footer {
-		scroll-behavior: contain;
-		&[data-expanded='true'] {
-			height: calc($footer-height + 100vh);
-			background-color: $eylea-blue;
-			color: white;
-		}
-		position: absolute;
-		top: calc(100vh - $footer-height);
-		height: $footer-height;
-		width: 100%;
-		background-color: $light-blue;
-		color: $eylea-blue;
-		margin: auto 0;
-		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-	}
+	// footer {
+	// 	scroll-behavior: contain;
+	// 	&[data-expanded='true'] {
+	// 		height: calc($footer-height + 100vh);
+	// 		background-color: $eylea-blue;
+	// 		color: white;
+	// 	}
+	// 	position: absolute;
+	// 	top: calc(100vh - $footer-height);
+	// 	height: $footer-height;
+	// 	width: 100%;
+	// 	background-color: $light-blue;
+	// 	color: $eylea-blue;
+	// 	margin: auto 0;
+	// 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	// }
 
 	.fade-in {
 		opacity: 0;

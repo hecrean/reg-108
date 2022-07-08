@@ -1,8 +1,18 @@
+Leon:
+[] Consolidate all changes in one version
+[x] For now, remove all comparison functionality from the sidebar, just stick to single patient data viz
+[] Match the mockups styling and wireframe structure
+
+[] Re-style labels as text labels with togglable description
+[] Make the "viewer" less clunky
+[] Footer implemented as a togglable "sidebar"
+
 Header:
 []
 
-SVG: 
-- 
+SVG:
+
+-
 
 Canvas:
 [] svg timeline animation/transition
@@ -29,8 +39,6 @@ Case study 1:
 [x] text/metrics
 [] images  
 [] hotspots labels
-
-
 
 ---
 

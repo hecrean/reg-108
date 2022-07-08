@@ -1,15 +1,18 @@
 import { DisplacementMap } from '$data/displacement-maps';
+import type { Hotspot } from '$data/state';
 import { clamp } from '$utils/math';
 import {
 	AmbientLight,
 	Color,
 	Fog,
+	Group,
 	LoadingManager,
 	PerspectiveCamera,
 	Scene,
 	Texture,
 	TextureLoader,
 	Vector2,
+	Vector3,
 	WebGLRenderer
 } from 'three';
 import {
@@ -24,9 +27,12 @@ import {
 	ShaderPass,
 	UnrealBloomPass
 } from 'three-stdlib';
+import { Html } from './components/three-html/Html';
 import { ImagePlane } from './components/image-plane';
+import { cssLabel } from './components/three-html/label-button';
 import { XFadeMaterial } from './materials/XFadeMaterial';
 import type { TransitionFnId } from './transitions';
+import { transitions } from './transitions';
 
 type Object3dHandles = {
 	ambientLight: AmbientLight;
@@ -55,7 +61,7 @@ export type ThreeState = {
 	composer: EffectComposer;
 	camera: PerspectiveCamera;
 	scene: Scene;
-	cssScene: Scene;
+	cssGroup: Group;
 	mouse: Vector2;
 	resolution: Vector2;
 	assetManager: LoadingManager;
@@ -71,7 +77,7 @@ const createThree = (
 	// scenes :
 	const scene = new Scene();
 	scene.fog = new Fog(0x000000, 1, 1000);
-	const cssScene = new Scene();
+	const cssGroup = new Group();
 
 	//render targets, planes,
 	const canvasWidth = canvasEl.clientWidth;
@@ -116,19 +122,19 @@ const createThree = (
 		new XFadeMaterial({
 			uMouse: mouse,
 			uResolution: resolution,
-			uDiffuseTexture1: textureLoader.load('/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'),
-			uDiffuseTexture2: textureLoader.load('/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'),
-			uDispMap: textureLoader.load(`/${DisplacementMap.COSMOLOGICAL}`)
+			uDiffuseTexture1: textureLoader.load(Texture.DEFAULT_IMAGE),
+			uDiffuseTexture2: textureLoader.load(Texture.DEFAULT_IMAGE),
+			uDispMap: textureLoader.load(DisplacementMap.COSMOLOGICAL)
 		}),
 		1 / 1,
 		new Vector2(0, 0),
 		0
 	);
 
-	cssScene.clear();
+	cssGroup.clear();
 	// cssScene.add(new Html(new CssFlashingTooltip(1, 'label', () => {}), plane));
 
-	scene.add(ambientLight, plane, cssScene);
+	scene.add(ambientLight, plane, cssGroup);
 
 	const renderPass = new RenderPass(scene, camera);
 	const effectCopy = new ShaderPass(CopyShader);
@@ -163,7 +169,7 @@ const createThree = (
 		},
 		renderer: renderer,
 		cssRenderer: cssRenderer,
-		cssScene: cssScene,
+		cssGroup: cssGroup,
 		composer: composer,
 		camera: camera,
 		scene: scene,
@@ -230,7 +236,15 @@ const createThree = (
 
 			return state;
 		},
-		render: ({ renderer, canvasProxyEl, camera, composer, scene, cssRenderer }: ThreeState) => {
+		render: ({
+			renderer,
+			canvasProxyEl,
+			camera,
+			composer,
+			scene,
+			cssRenderer,
+			object3dHandles: { plane }
+		}: ThreeState) => {
 			const canvas = state.renderer.domElement;
 
 			const needResize =
@@ -246,8 +260,11 @@ const createThree = (
 				camera.updateProjectionMatrix();
 			}
 
-			cssRenderer.render(scene, camera);
+			plane.material.uMouse = mouse;
+			plane.material.uResolution = resolution;
+
 			composer.render();
+			cssRenderer.render(scene, camera);
 
 			return state;
 		},
@@ -259,23 +276,22 @@ const createThree = (
 			camera.updateProjectionMatrix();
 			return state;
 		},
-		changePlaneTexture: (
+		changePlaneTexture: async (
 			{ object3dHandles: { plane }, textureLoader }: ThreeState,
 			url1: string,
 			url2: string,
+			displacmentTextureUrl: string,
 			aspectRatio: number,
 			temporalTransition: Array<TransitionFnId>,
 			positionalTransition: Array<TransitionFnId>
 		) => {
 			plane.updateAspectRatio(aspectRatio);
-			plane.crossfadeImage(textureLoader, `/${url1}`, `/${url2}`, DisplacementMap.COSMOLOGICAL, 1);
-
-			//   controller?.fitPlaneToViewport(plane);
+			await plane.crossfadeImage(textureLoader, url1, url2, displacmentTextureUrl, 500);
 			// for (const timeTransId of temporalTransition) {
-			// 	transitions[timeTransId](state, url1, url2);
+			// 	transitions[timeTransId](state, url);
 			// }
 			// for (const posTransId of positionalTransition) {
-			// 	transitions[posTransId](state, url1, url2);
+			// 	transitions[posTransId](state, url);
 			// }
 
 			return state;
@@ -299,6 +315,24 @@ const createThree = (
 			camera.updateProjectionMatrix();
 
 			return state;
+		},
+		changeHotspots: (
+			{ cssGroup, object3dHandles: { plane } }: ThreeState,
+			newHotspots: Array<Hotspot>
+		) => {
+			cssGroup.clear();
+			cssGroup.add(
+				...newHotspots.map(
+					(hs, id) =>
+						new Html(
+							// new CssLabelButton(id, hs.label, (ev: MouseEvent) => {}),
+							cssLabel(hs.label, 'more detail to the label'),
+							plane,
+							new Vector3(hs.position[0], hs.position[1], 0)
+						)
+				)
+			);
+			console.log(cssGroup);
 		}
 	};
 };

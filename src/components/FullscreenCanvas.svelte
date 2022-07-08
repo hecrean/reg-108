@@ -1,5 +1,8 @@
 <script lang="ts">
-	import type { CaseStudy, StageADT, ViewADT } from '$data/state';
+	import { browser} from '$app/env';
+	import { DisplacementMap } from '$data/displacement-maps';
+
+	import type { AnnotatedImage, CaseStudy, StageADT, ViewADT } from '$data/state';
 	// import { three, type ThreeApi } from '$lib/three/three-api.store';
 	import { three, type ThreeApi } from '$lib/three/three-api';
 
@@ -68,21 +71,33 @@
 		};
 	});
 
-	$: {
-		const image1 = caseStudy['stages'][stage]['views'][view][0];
+	const changeImage = async (stage: StageADT, view: ViewADT, currentImage: AnnotatedImage): Promise<AnnotatedImage> => {
+		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
 
 		if (threeApi) {
 			threeApi.changePlaneTexture(
 				threeApi.state(),
-				image1.url,
-				image1.url,
-				image1.aspect_ratio,
+				currentImage.url,
+				annotatedImage.url,
+				DisplacementMap.COSMOLOGICAL,
+				annotatedImage.aspect_ratio,
 				[],
 				[]
 			);
+				threeApi.changeHotspots(threeApi.state(), annotatedImage.hotspots)
+			
+
+
+			
 			threeApi.fitPlaneToViewport(threeApi.state());
 		}
+		return annotatedImage;
+		
 	}
+
+	let currentlyViewedImage: AnnotatedImage = caseStudy['stages']['baseline']['views']['fundus'][0];
+
+	$: changeImage(stage, view, currentlyViewedImage);
 </script>
 
 <div class:canvas-proxy={true} data-fullscreen={false} bind:this={canvasProxyEl}>

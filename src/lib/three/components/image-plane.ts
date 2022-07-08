@@ -11,9 +11,9 @@ class ImagePlane extends Mesh<PlaneBufferGeometry, XFadeMaterial> {
 	updateAspectRatio: (aspectRatio: number) => void;
 	crossfadeImage: (
 		textureLoader: TextureLoader,
-		src1: string,
-		src2: string,
-		displacmentTexSrc: string,
+		url1: string,
+		url2: string,
+		displacmentTextureUrl: string,
 		duration: number
 	) => Promise<void>;
 
@@ -33,14 +33,14 @@ class ImagePlane extends Mesh<PlaneBufferGeometry, XFadeMaterial> {
 		};
 		this.crossfadeImage = async (
 			textureLoader: TextureLoader,
-			src1: string,
-			src2: string,
-			displacmentTexSrc: string,
+			url1: string,
+			url2: string,
+			displacmentTextureUrl: string,
 			duration = 5000
 		) => {
-			const texture1 = textureLoader.load(src1);
-			const texture2 = textureLoader.load(src2);
-			const displacementTexture = textureLoader.load(displacmentTexSrc);
+			const tex1 = textureLoader.load(url1);
+			const tex2 = textureLoader.load(url2);
+			const displacementTexture = textureLoader.load(displacmentTextureUrl);
 
 			await animate({
 				from: { disp: 0 },
@@ -53,8 +53,8 @@ class ImagePlane extends Mesh<PlaneBufferGeometry, XFadeMaterial> {
 				}
 			}).then(
 				() => {
-					this.material.uDiffuseTexture1 = texture1;
-					this.material.uDiffuseTexture2 = texture2;
+					this.material.uDiffuseTexture1 = tex1;
+					this.material.uDiffuseTexture2 = tex2;
 					this.material.uDispMap = displacementTexture;
 				},
 				() => {}

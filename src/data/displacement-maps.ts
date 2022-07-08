@@ -1,6 +1,6 @@
 enum DisplacementMap {
-	PRISMATIC = 'displacementMaps/prismatic.jpg',
-	COSMOLOGICAL = 'displacementMaps/cosmological.jpg'
+	PRISMATIC = '/displacement-map/prismatic.jpg',
+	COSMOLOGICAL = '/displacement-map/cosmological.jpg'
 }
 
 export { DisplacementMap };

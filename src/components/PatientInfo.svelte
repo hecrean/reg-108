@@ -74,14 +74,14 @@
 	</div>
 
 	<div class="dashboard">
-		<SearchInput />
+		<!-- <SearchInput /> -->
 		<div class="case-study-tokens">
-			<Token
+			<!-- <Token
 				tag="patient 1"
 				avatarUrl="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
 				bgColor={caseStudy.colorId}
-			/>
-			<IconButton><PlusIcon /></IconButton>
+			/> -->
+			<!-- <IconButton><PlusIcon /></IconButton> -->
 		</div>
 
 		<NavigationMenu
@@ -223,13 +223,15 @@
 		width: 100%;
 		padding: 20px 20px;
 		background: linear-gradient($avatar-block-color, rgba($base-grey, 0.8));
+		// background: linear-gradient(hsl(213, 69%, 19%), hsl(193, 64%, 80%));
 
 		.toggle-button {
 			z-index: 1;
 			margin: 0rem -1rem;
 			@include circle(2.5rem);
-			@include background($avatar-block-color);
-			color: white;
+			// @include background($avatar-block-color);
+			@include background(hsl(49, 100%, 50%));
+			color: hsl(205, 24%, 51%);
 		}
 
 		.avatar-wrapper {

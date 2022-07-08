@@ -118,7 +118,7 @@ const createThree = (
 			uResolution: resolution,
 			uDiffuseTexture1: textureLoader.load('/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'),
 			uDiffuseTexture2: textureLoader.load('/Aflibercept+VEGF/REG108_Aflibercept+VEGF_Aa.jpg'),
-			uDispMap: textureLoader.load(`/${DisplacementMap.COSMOLOGICAL}`)
+			uDispMap: textureLoader.load(DisplacementMap.COSMOLOGICAL)
 		}),
 		1 / 1,
 		new Vector2(0, 0),
@@ -278,9 +278,8 @@ const createThree = (
 				camera.updateProjectionMatrix();
 				return state;
 			}),
-		changePlaneTexture: (
-			url1: string,
-			url2: string,
+		changePlaneTexture: async (
+			url: string,
 			aspectRatio: number,
 			temporalTransition: Array<TransitionFnId>,
 			positionalTransition: Array<TransitionFnId>
@@ -288,13 +287,7 @@ const createThree = (
 			const state = get(store);
 
 			plane.updateAspectRatio(aspectRatio);
-			plane.crossfadeImage(
-				state.textureLoader,
-				`/${url1}`,
-				`/${url2}`,
-				DisplacementMap.COSMOLOGICAL,
-				1
-			);
+			await plane.crossfadeImage(state.textureLoader, url, DisplacementMap.COSMOLOGICAL, 1);
 
 			//   controller?.fitPlaneToViewport(plane);
 			// for (const timeTransId of temporalTransition) {

@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 	import Hoverable from './Hoverable.svelte';
 	import Svg from '$components/svg/Svg.svelte';
-	import { clamp} from '$utils/math'
+	import { clamp } from '$utils/math';
 
 	type TimelineItem = {
 		stage: StageADT;
@@ -50,7 +50,9 @@
 				r={0.5 * ((0.3 * width) / timelineLength)}
 				on:click={() => (stage = item.stage)}
 			/>
-			<text x={0.5 * (width / timelineLength)} y={'70%'} style:font-size={clamp(width/10, 5, 20)}>{item.stage}</text>
+			<text x={0.5 * (width / timelineLength)} y={'70%'} style:font-size={clamp(width / 10, 5, 20)}
+				>{item.stage}</text
+			>
 		</g>
 	{/each}
 
