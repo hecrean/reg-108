@@ -363,6 +363,9 @@ const drag = (el: InputSurface, { direction, threshold }: DragParams): Observabl
 		map(([cacheEntry]) =>
 			pointerDifference(cacheEntry[cacheEntry.length - 2], cacheEntry[cacheEntry.length - 1])
 		),
+		// ease({
+
+		// }),
 		map((v) => ({ _tag: 'Drag', value: v }))
 	);
 };

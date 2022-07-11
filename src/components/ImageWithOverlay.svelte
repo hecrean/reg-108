@@ -36,7 +36,7 @@
 		z-index: 0;
 		position: relative;
 		width: 100%;
-		margin: 2rem;
+		margin: 2rem 0 0 0;
 		min-height: 200px;
 	}
 

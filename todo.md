@@ -1,11 +1,15 @@
 Leon:
-[] Consolidate all changes in one version
+[x] Consolidate all changes in one version
 [x] For now, remove all comparison functionality from the sidebar, just stick to single patient data viz
-[] Match the mockups styling and wireframe structure
+[x] Match the mockups styling and wireframe structure 
+    - [] sidebar styling? to discus
+    - [] header styling -> opted for hamburger sidebar in order to reveal case studies. Confirm change?
+    - [] get eylea logo 
 
 [] Re-style labels as text labels with togglable description
 [] Make the "viewer" less clunky
-[] Footer implemented as a togglable "sidebar"
+[x] Footer implemented as a togglable "sidebar"
+
 
 Header:
 []

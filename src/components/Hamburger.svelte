@@ -36,7 +36,7 @@
 	}
 
 	svg {
-		min-height: 24px;
+		// min-height: 24px;
 		transition: transform 0.3s ease-in-out;
 	}
 
@@ -56,7 +56,7 @@
 		cursor: pointer;
 		height: 2rem;
 		width: 2rem;
-		margin: 1rem 1rem;
+		// margin: 1rem 1rem;
 		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
 			var(--tw-shadow);
 		display: flex;

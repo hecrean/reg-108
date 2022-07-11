@@ -1,4 +1,6 @@
 <script lang="ts">
+import { browser } from '$app/env';
+
 	import { DisplacementMap } from '$data/displacement-maps';
 
 	import type { AnnotatedImage, CaseStudy, StageADT, ViewADT } from '$data/state';
@@ -32,6 +34,7 @@
 	onMount(() => {
 		//canvas observables
 		const api = three(canvasProxyEl, canvasEl, cssEl);
+		console.log('cssEl', cssEl)
 
 		threeApi = api;
 
@@ -56,6 +59,9 @@
 			api.dolly(api.state(), 0.02 * event.deltaY);
 		});
 
+
+
+
 		// const unsubscribeThreeApi = api.subscribe(() => {});
 
 		//animation loop
@@ -64,6 +70,10 @@
 			requestAnimationFrame(loop);
 		};
 		const frameId = requestAnimationFrame(loop);
+
+
+
+		
 
 		//cleanup
 		return () => {
@@ -76,33 +86,37 @@
 		};
 	});
 
-	const changeImage = async (
-		stage: StageADT,
-		view: ViewADT,
-		currentImage: AnnotatedImage
-	): Promise<AnnotatedImage> => {
-		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
 
-		if (threeApi) {
-			threeApi.changePlaneTexture(
-				threeApi.state(),
-				currentImage.url,
-				annotatedImage.url,
-				DisplacementMap.COSMOLOGICAL,
-				annotatedImage.aspect_ratio,
-				[],
-				[]
-			);
-			threeApi.changeHotspots(threeApi.state(), annotatedImage.hotspots);
 
-			threeApi.fitPlaneToViewport(threeApi.state());
-		}
-		return annotatedImage;
-	};
 
 	let currentlyViewedImage: AnnotatedImage = caseStudy['stages']['baseline']['views']['fundus'][0];
 
-	$: changeImage(stage, view, currentlyViewedImage);
+	$: if (threeApi && browser) {
+		stage; view; //additional dependencies
+		threeApi.changeHotspots(threeApi.state(), currentlyViewedImage.hotspots)
+		console.log(browser)
+	}
+
+
+	$: if (threeApi) {
+		
+		(async() => {
+		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
+		
+		threeApi.changePlaneTexture(
+			threeApi.state(),
+			currentlyViewedImage.url,
+			annotatedImage.url,
+			DisplacementMap.COSMOLOGICAL,
+			annotatedImage.aspect_ratio,
+			[],
+			[]
+		);
+
+		threeApi.fitPlaneToViewport(threeApi.state());
+		})();
+	}
+
 </script>
 
 <div class:canvas-proxy={true} data-fullscreen={false} bind:this={canvasProxyEl}>

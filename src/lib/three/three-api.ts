@@ -18,6 +18,7 @@ import {
 import {
 	AfterimagePass,
 	CopyShader,
+	CSS2DObject,
 	CSS2DRenderer,
 	EffectComposer,
 	FilmPass,
@@ -29,7 +30,7 @@ import {
 } from 'three-stdlib';
 import { Html } from './components/three-html/Html';
 import { ImagePlane } from './components/image-plane';
-import { cssLabel } from './components/three-html/label-button';
+import { cssLabel } from './templates/btn';
 import { XFadeMaterial } from './materials/XFadeMaterial';
 import type { TransitionFnId } from './transitions';
 import { transitions } from './transitions';
@@ -61,7 +62,7 @@ export type ThreeState = {
 	composer: EffectComposer;
 	camera: PerspectiveCamera;
 	scene: Scene;
-	cssGroup: Group;
+	cssScene: Scene;
 	mouse: Vector2;
 	resolution: Vector2;
 	assetManager: LoadingManager;
@@ -77,7 +78,7 @@ const createThree = (
 	// scenes :
 	const scene = new Scene();
 	scene.fog = new Fog(0x000000, 1, 1000);
-	const cssGroup = new Group();
+	const cssScene = new Scene();
 
 	//render targets, planes,
 	const canvasWidth = canvasEl.clientWidth;
@@ -131,10 +132,10 @@ const createThree = (
 		0
 	);
 
-	cssGroup.clear();
+	// cssGroup.clear();
 	// cssScene.add(new Html(new CssFlashingTooltip(1, 'label', () => {}), plane));
 
-	scene.add(ambientLight, plane, cssGroup);
+	scene.add(ambientLight, plane);
 
 	const renderPass = new RenderPass(scene, camera);
 	const effectCopy = new ShaderPass(CopyShader);
@@ -169,7 +170,7 @@ const createThree = (
 		},
 		renderer: renderer,
 		cssRenderer: cssRenderer,
-		cssGroup: cssGroup,
+		cssScene: cssScene,
 		composer: composer,
 		camera: camera,
 		scene: scene,
@@ -319,11 +320,11 @@ const createThree = (
 			return state;
 		},
 		changeHotspots: (
-			{ cssGroup, object3dHandles: { plane } }: ThreeState,
+			{ cssScene, object3dHandles: { plane } }: ThreeState,
 			newHotspots: Array<Hotspot>
 		) => {
-			cssGroup.clear();
-			cssGroup.add(
+			cssScene.clear();
+			cssScene.add(
 				...newHotspots.map(
 					(hs, id) =>
 						new Html(
@@ -334,7 +335,6 @@ const createThree = (
 						)
 				)
 			);
-			console.log(cssGroup);
 		}
 	};
 };

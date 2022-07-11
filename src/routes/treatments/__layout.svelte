@@ -81,8 +81,8 @@
 <style lang="scss">
 	@import '../../styles/breakpoints';
 
-	$header-height: 0px;
-	$footer-height: 60px;
+	$header-height: 50px;
+	$footer-height: 40px;
 
 	$white: hsl(210, 40%, 96%);
 
@@ -121,52 +121,7 @@
 		flex-direction: column;
 	}
 
-	header {
-		$bg-color: $light-blue;
-		$button-bg-color: $eylea-blue;
-		$button-color: $white;
 
-		width: 100%;
-		height: $header-height;
-		display: flex;
-		flex-direction: row;
-		color: $white;
-		background-color: $light-blue;
-		padding-left: 1rem;
-		padding-right: 1rem;
-
-		.navbar_button {
-			min-width: 15vw;
-			width: 10rem;
-			min-height: 44px;
-			border: none;
-			background-color: transparent;
-			font-family: inherit;
-			cursor: pointer;
-			flex-grow: 0;
-			flex-shrink: 1;
-			/* push towards baseline in y direction*/
-			align-self: flex-end;
-			background-color: $button-bg-color;
-			color: $button-color;
-			border-radius: 10px 10px 0 0; /* top-left top-right bottom-right bottom-left.*/
-			border-color: none;
-			padding: 0.25em 0.75em;
-			margin: 0 0.5rem;
-			box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
-			text-align: center;
-			line-height: 1.1;
-			&:hover,
-			&:active,
-			&:focus {
-				background-color: scale-color($button-bg-color, $lightness: -20%);
-				transition: 220ms all ease-in-out;
-			}
-			&:active {
-				background-color: $button-bg-color;
-			}
-		}
-	}
 	main {
 		width: 100%;
 		max-width: 100vw;
