@@ -15,11 +15,11 @@ import {
 	Vector3,
 	WebGLRenderer
 } from 'three';
+import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
+
 import {
 	AfterimagePass,
 	CopyShader,
-	CSS2DObject,
-	CSS2DRenderer,
 	EffectComposer,
 	FilmPass,
 	GlitchPass,

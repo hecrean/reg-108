@@ -78,30 +78,6 @@ import { noop } from 'svelte/internal';
 		};
 	});
 
-	const changeImage = async (
-		stage: StageADT,
-		view: ViewADT,
-		currentImage: AnnotatedImage, 
-		api: ThreeApi
-	): Promise<true> => {
-
-		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
-
-		api.changePlaneTexture(
-				threeApi.state(),
-				currentImage.url,
-				annotatedImage.url,
-				DisplacementMap.COSMOLOGICAL,
-				annotatedImage.aspect_ratio,
-				[],
-				[]
-		);
-
-		api.fitPlaneToViewport(threeApi.state());
-		
-		return true;
-	};
-
 
 	$: currImage = caseStudy['stages'][stage]['views'][view][0];
 
