@@ -1,6 +1,4 @@
 <script lang="ts">
-import { browser } from '$app/env';
-
 	import { DisplacementMap } from '$data/displacement-maps';
 
 	import type { AnnotatedImage, CaseStudy, StageADT, ViewADT } from '$data/state';
@@ -10,6 +8,7 @@ import { browser } from '$app/env';
 	import { Direction, drag, pointerPosition, wheel } from '$utils/gesture';
 	import { resizeObserver } from '$utils/resize-observer';
 	import { onMount } from 'svelte';
+import { noop } from 'svelte/internal';
 
 	// const coords = spring({ x: 0, y: 0 }, {
 	// 	stiffness: 0.2,
@@ -59,9 +58,6 @@ import { browser } from '$app/env';
 			api.dolly(api.state(), 0.02 * event.deltaY);
 		});
 
-
-
-
 		// const unsubscribeThreeApi = api.subscribe(() => {});
 
 		//animation loop
@@ -70,10 +66,6 @@ import { browser } from '$app/env';
 			requestAnimationFrame(loop);
 		};
 		const frameId = requestAnimationFrame(loop);
-
-
-
-		
 
 		//cleanup
 		return () => {
@@ -86,36 +78,58 @@ import { browser } from '$app/env';
 		};
 	});
 
+	const changeImage = async (
+		stage: StageADT,
+		view: ViewADT,
+		currentImage: AnnotatedImage, 
+		api: ThreeApi
+	): Promise<true> => {
 
-
-
-	let currentlyViewedImage: AnnotatedImage = caseStudy['stages']['baseline']['views']['fundus'][0];
-
-	$: if (threeApi && browser) {
-		stage; view; //additional dependencies
-		threeApi.changeHotspots(threeApi.state(), currentlyViewedImage.hotspots)
-		console.log(browser)
-	}
-
-
-	$: if (threeApi) {
-		
-		(async() => {
 		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
-		
-		threeApi.changePlaneTexture(
-			threeApi.state(),
-			currentlyViewedImage.url,
-			annotatedImage.url,
-			DisplacementMap.COSMOLOGICAL,
-			annotatedImage.aspect_ratio,
-			[],
-			[]
+
+		api.changePlaneTexture(
+				threeApi.state(),
+				currentImage.url,
+				annotatedImage.url,
+				DisplacementMap.COSMOLOGICAL,
+				annotatedImage.aspect_ratio,
+				[],
+				[]
 		);
 
-		threeApi.fitPlaneToViewport(threeApi.state());
-		})();
+		api.fitPlaneToViewport(threeApi.state());
+		
+		return true;
+	};
+
+
+	$: currImage = caseStudy['stages'][stage]['views'][view][0];
+
+	$: if (threeApi) {
+		stage; view; //additional dependencies
+		threeApi.changeHotspots(threeApi.state(), currImage.hotspots)
 	}
+
+	$: if (threeApi
+	) {
+		(async() => {
+
+			await threeApi.changePlaneTexture(
+					threeApi.state(),
+					currImage.url,
+					currImage.url,
+					DisplacementMap.COSMOLOGICAL,
+					currImage.aspect_ratio,
+					[],
+					[]
+			);
+
+			threeApi.fitPlaneToViewport(threeApi.state());
+
+		})()
+	}
+
+
 
 </script>
 

@@ -129,7 +129,7 @@ const caseStudies: Array<CaseStudy> = [
 							label:
 								'Given the severity of the NPDR, it is likely that this patient has had type 2 diabetes mellitus much longer than 6 months. There are numerous intraretinal hemorrhages and microaneurysms, particularly in the temporal macula',
 							aspect_ratio: 1920 / 1080,
-							url: '/Fundus/REG108_Fundus_Healthy_Ba.jpg'
+							url: '/case-studies/1/FUNDUS/REG108_Fundus_Fundus_Angiogram_NoLeackage_Ca_0000.jpg'
 						}
 					],
 					fa: [
@@ -153,7 +153,7 @@ const caseStudies: Array<CaseStudy> = [
 								{ label: 'label', position: [-0.2, 0.1] }
 							],
 							aspect_ratio: 1920 / 1080,
-							url: '/Eye/REG108_Eye_Aa.jpg'
+							url: '/case-studies/1/OCT/REG108_Retina_OCT_SmallestGap_Aa_0000.jpg'
 						}
 					]
 				}
@@ -177,7 +177,7 @@ const caseStudies: Array<CaseStudy> = [
 							label:
 								'3 step improvement. Significant reduction in the number of microaneurysms and their associated leakage.',
 							aspect_ratio: 1920 / 1080,
-							url: '/Fundus/REG108_Fundus_Healthy_with_Aneurisms_Ba_0000.jpg'
+							url: '/case-studies/1/FUNDUS/REG108_Fundus_Fundus_Angiogram_LessDots_Ca_0000.jpg'
 						}
 					],
 
@@ -203,7 +203,7 @@ const caseStudies: Array<CaseStudy> = [
 								{ label: 'label', position: [-0.2, 0.1] }
 							],
 							aspect_ratio: 1280 / 720,
-							url: '/Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ab.jpg'
+							url: '/case-studies/1/OCT/REG108_Retina_OCT_mediumGap_Aa_0000.jpg'
 						}
 					]
 				}
@@ -226,7 +226,7 @@ const caseStudies: Array<CaseStudy> = [
 							label:
 								'3 step improvement. The reduction of microaneurysms seen at Week 24 persists. Of note, the patient has developed hard exudate in the superior macula without associated macular edema. That finding, combined with further reduction in CST, supports the idea of treatment of subclinical DME in conjunction with NPDR.',
 							aspect_ratio: 1920 / 1080,
-							url: '/Fundus/REG108_Fundus_Healthy_with_Fluid_Bulge_Aa_0000.jpg'
+							url: '/case-studies/1/FUNDUS/REG108_Fundus_Fundus_Angiogram_Ea_0000.jpg'
 						}
 					],
 
@@ -251,7 +251,7 @@ const caseStudies: Array<CaseStudy> = [
 								{ label: 'label', position: [-0.2, 0.1] }
 							],
 							aspect_ratio: 1280 / 720,
-							url: '/Retina_CS_Damaged/REG108_Retina_CS_Damaged_Ac.jpg'
+							url: '/case-studies/1/OCT/REG108_Retina_OCT_LargeGap_Bb_0000.jpg'
 						}
 					]
 				}
