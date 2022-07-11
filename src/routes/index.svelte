@@ -1,6 +1,7 @@
 <script lang="ts">
 	import FadeInBlock from '$components/FadeInBlock.svelte';
 	import ScrollCorridor from '$components/ScrollCorridor.svelte';
+	import EyleaLogo from '$icons/EyleaLogo.svelte';
 </script>
 
 <!-- Landing Page -->
@@ -32,28 +33,33 @@
 			<span in:fade={{ delay: 1000 + i * 150, duration: 800 }}>{char}</span>
 		{/each}
 	</div> -->
-
 	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 20rem;">E Y L E A</span>
-	</FadeInBlock>
-	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 16rem;">A F L I B -</span>
-	</FadeInBlock>
-	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 13rem;">- E R C E P T </span>
-	</FadeInBlock>
-	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 10rem;">I N J E C T I O N </span>
-	</FadeInBlock>
-	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 8rem;">F O R</span>
-	</FadeInBlock>
-	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 6rem;">I N T R A V I T R E A L</span>
+		<span class:eylea-logo={true}>
+			<EyleaLogo />
+		</span>
 	</FadeInBlock>
 
 	<FadeInBlock>
-		<span class:eye-test-row={true} style="font-size: 4rem;"> I N J E C T I O N</span>
+		<span class:section-row={true} style="font-size: 20rem;">E Y L E A</span>
+	</FadeInBlock>
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 16rem;">A F L I B -</span>
+	</FadeInBlock>
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 13rem;">- E R C E P T </span>
+	</FadeInBlock>
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 10rem;">I N J E C T I O N </span>
+	</FadeInBlock>
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 8rem;">F O R</span>
+	</FadeInBlock>
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 6rem;">I N T R A V I T R E A L</span>
+	</FadeInBlock>
+
+	<FadeInBlock>
+		<span class:section-row={true} style="font-size: 4rem;"> I N J E C T I O N</span>
 	</FadeInBlock>
 
 	<ScrollCorridor sectionName="Case Studies" routeAtEndOfCorridor="/treatments/case-studies" />
@@ -63,11 +69,17 @@
 	@import '../styles/color';
 
 	main {
-		background-color: $eylea-blue;
+		background-color: white;
 		min-height: 100vh;
 	}
 
-	.eye-test-row {
+	.eylea-logo {
+		margin: 0 auto;
+		width: 50vw;
+		height: 50vh;
+	}
+
+	.section-row {
 		text-align: center;
 		width: 100%;
 		margin-bottom: 4rem;

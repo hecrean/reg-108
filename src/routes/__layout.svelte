@@ -77,6 +77,19 @@
 		padding: 0;
 		// overscroll-behavior: none;
 		touch-action: none;
+
+		cursor: url("data:image/svg+xml,%3Csvg width='17px' height='17px' viewBox='0 0 17 17' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%0A%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Group-15' transform='translate(1.000000, 1.000000)'%3E%3Ccircle id='Oval-Copy-2' fill-opacity='0.1' fill='%2317181A' cx='7.5' cy='7.5' r='7.5' /%3E%3Ccircle id='Oval' stroke='%23FFFFFF' stroke-width='2' cx='7.5' cy='7.5' r='7.5' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A")
+				8.5 8.5,
+			pointer;
+
+		cursor: url("data:image/svg+xml,%3Csvg width='22px' height='22px' viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Group-16' transform='translate(1.000000, 1.000000)'%3E%3Ccircle id='Oval-Copy-6' fill-opacity='0.1' fill='%2317181A' cx='10' cy='10' r='10'%3E%3C/circle%3E%3Ccircle id='Oval-Copy-4' stroke='%23FFFFFF' stroke-width='2' cx='10' cy='10' r='10'%3E%3C/circle%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+				11 11,
+			grab;
+
+		cursor: url("data:image/svg+xml,%3Csvg width='32px' height='32px' viewBox='0 0 32 32' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%0A%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Group-14' transform='translate(1.000000, 1.000000)'%3E%3Ccircle id='Oval-Copy-2' fill-opacity='0.1' fill='%2317181A' cx='15' cy='15' r='15' /%3E%3Cg id='Group-Copy-4' stroke='%23FFFFFF' stroke-width='2'%3E%3Crect id='Rectangle-Copy-4' fill-opacity='0' fill='%23000000' x='0' y='0' width='30' height='30' rx='15' /%3E%3Cline x1='10' y1='15' x2='20' y2='15' id='Line-2-Copy' stroke-linecap='square' /%3E%3Cline x1='10' y1='15' x2='20' y2='15' id='Line-2-Copy-2' stroke-linecap='square' transform='translate(15.000000, 15.000000) rotate(90.000000) translate(-15.000000, -15.000000) ' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A")
+			16 16 zoom-in;
+		cursor: url("data:image/svg+xml,%3Csvg width='32px' height='32px' viewBox='0 0 32 32' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%0A%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Group-14' transform='translate(1.000000, 1.000000)'%3E%3Ccircle id='Oval-Copy-2' fill-opacity='0.1' fill='%2317181A' cx='15' cy='15' r='15' /%3E%3Cg id='Group-Copy-4' stroke='%23FFFFFF' stroke-width='2'%3E%3Crect id='Rectangle-Copy-4' fill-opacity='0' fill='%23000000' x='0' y='0' width='30' height='30' rx='15' /%3E%3Cline x1='10' y1='15' x2='20' y2='15' id='Line-2-Copy' stroke-linecap='square' /%3E%3Cline x1='10' y1='15' x2='20' y2='15' id='Line-2-Copy-2' stroke-linecap='square' transform='translate(15.000000, 15.000000) rotate(90.000000) translate(-15.000000, -15.000000) ' /%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A")
+			16 16 zoom-out;
 	}
 
 	body {

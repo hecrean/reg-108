@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser} from '$app/env';
 	import { DisplacementMap } from '$data/displacement-maps';
 
 	import type { AnnotatedImage, CaseStudy, StageADT, ViewADT } from '$data/state';
@@ -9,6 +8,12 @@
 	import { Direction, drag, pointerPosition, wheel } from '$utils/gesture';
 	import { resizeObserver } from '$utils/resize-observer';
 	import { onMount } from 'svelte';
+
+	// const coords = spring({ x: 0, y: 0 }, {
+	// 	stiffness: 0.2,
+	// 	damping: 0.4
+	// });
+
 	/**
 	 * props
 	 */
@@ -71,7 +76,11 @@
 		};
 	});
 
-	const changeImage = async (stage: StageADT, view: ViewADT, currentImage: AnnotatedImage): Promise<AnnotatedImage> => {
+	const changeImage = async (
+		stage: StageADT,
+		view: ViewADT,
+		currentImage: AnnotatedImage
+	): Promise<AnnotatedImage> => {
 		const annotatedImage = caseStudy['stages'][stage]['views'][view][0];
 
 		if (threeApi) {
@@ -84,16 +93,12 @@
 				[],
 				[]
 			);
-				threeApi.changeHotspots(threeApi.state(), annotatedImage.hotspots)
-			
+			threeApi.changeHotspots(threeApi.state(), annotatedImage.hotspots);
 
-
-			
 			threeApi.fitPlaneToViewport(threeApi.state());
 		}
 		return annotatedImage;
-		
-	}
+	};
 
 	let currentlyViewedImage: AnnotatedImage = caseStudy['stages']['baseline']['views']['fundus'][0];
 
